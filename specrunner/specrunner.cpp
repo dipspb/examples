@@ -108,7 +108,8 @@ void HeadlessSpecRunner::timerEvent(QTimerEvent *event)
         std::cout << "FAIL: " << qPrintable(desc.toPlainText()) << std::endl;
         m_page.mainFrame()->addToJavaScriptWindowObject("debug", this);
         m_page.mainFrame()->evaluateJavaScript(DUMP_MSG);
-        QDesktopServices::openUrl(m_page.mainFrame()->url());
+        // It's improper way to handle the error in headless environment
+        //QDesktopServices::openUrl(m_page.mainFrame()->url());
         QApplication::instance()->exit(1);
         return;
     }
